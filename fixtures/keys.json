@@ -1,0 +1,11 @@
+{
+  "comment": "Lab keys for the fixture only. Not a secret.",
+  "program": {
+    "kid": "00112233445566778899aabbccddeeff",
+    "key": "000102030405060708090a0b0c0d0e0f"
+  },
+  "ad": {
+    "kid": "ffeeddccbbaa99887766554433221100",
+    "key": "0f0e0d0c0b0a09080706050403020100"
+  }
+}

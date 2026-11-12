@@ -1,0 +1,12 @@
+{
+  "timescale": 1,
+  "cues": [
+    {
+      "id": "ad-break-1",
+      "start_s": 2.0,
+      "duration_s": 2.0,
+      "scte35_cmd": "splice_insert",
+      "out_of_network": true
+    }
+  ]
+}
