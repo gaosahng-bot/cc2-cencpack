@@ -62,6 +62,7 @@ def parse_tree(data: bytes, start: int = 0, end: int | None = None, parent_typ: 
         if typ in CONTAINER:
             ps, pe = payload_start, payload_end
             if typ == "stsd":
+                # full box: 4 version/flags bytes + 4-byte entry count
                 ps = payload_start + 8 if payload_start + 8 <= payload_end else payload_end
             elif typ in {"mp4a", "avc1", "encv", "enca"}:
                 ps = _sample_entry_child_start(typ, data, payload_start, payload_end)
@@ -90,8 +91,9 @@ def flatten(boxes: list[Box]) -> list[Box]:
     return out
 
 
-def find_all(boxes: list[Box], typ: str) -> list[Box]:
-    return [b for b in flatten(boxes) if b.typ == typ]
+def find_all(boxes: list[Box], *types: str) -> list[Box]:
+    wanted = set(types)
+    return [b for b in flatten(boxes) if b.typ in wanted]
 
 
 def load(path: str | Path) -> tuple[bytes, list[Box]]:
